@@ -272,34 +272,26 @@ void ControlMovement (objtype *ob)
 //
 // side to side move
 //
-#if (GAMEVER_WOLFREV > GV_WR_WL6AP11) && (!defined GAMEVER_NOAH3D)
-	// REFKEEN: New option added for VR, inverting the effect of bt_strafe
-	if (buttonstate[bt_strafe] !=
-	    (virtualreality && g_refKeenCfg.wolf3d.invertStrafe))
-#else
-	if (buttonstate[bt_strafe])
-#endif
 	{
 	//
 	// strafing
 	//
 	//
-		if (controlx > 0)
+		if (Keyboard[dirscan[di_east]] && !g_keybind_used_right)
 		{
 			angle = ob->angle - ANGLES/4;
 			if (angle < 0)
 				angle += ANGLES;
-			Thrust (angle,controlx*MOVESCALE);	// move to left
+			Thrust (angle,(controly != 0) ? (abs(controly*MOVESCALE)) : (BASEMOVE * tics * MOVESCALE));	// move to right
 		}
-		else if (controlx < 0)
+		else if (Keyboard[dirscan[di_west]] && !g_keybind_used_left)
 		{
 			angle = ob->angle + ANGLES/4;
 			if (angle >= ANGLES)
 				angle -= ANGLES;
-			Thrust (angle,-controlx*MOVESCALE);	// move to right
+			Thrust (angle,(controly != 0) ? (abs(controly*MOVESCALE)) : (BASEMOVE * tics * MOVESCALE));	// move to left
 		}
 	}
-	else
 	{
 	//
 	// not strafing
