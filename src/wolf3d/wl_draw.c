@@ -423,13 +423,7 @@ id0_boolean_t TransformTile (id0_int_t tx, id0_int_t ty, id0_int_t *dispx, id0_i
 
 	*dispheight = temp;
 
-//
-// see if it should be grabbed
-//
-	if (nx<TILEGLOBAL && ny>-TILEGLOBAL/2 && ny<TILEGLOBAL/2)
-		return true;
-	else
-		return false;
+	return false;
 }
 
 //==========================================================================
@@ -1387,9 +1381,8 @@ void DrawScaleds (void)
 			continue;						// not visable
 
 		if (TransformTile (statptr->tilex,statptr->tiley
-			,&visptr->viewx,&visptr->viewheight) && statptr->flags & FL_BONUS)
+			,&visptr->viewx,&visptr->viewheight))
 		{
-			GetBonus (statptr);
 			continue;
 		}
 
