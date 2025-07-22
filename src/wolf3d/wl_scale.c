@@ -61,7 +61,6 @@ id0_boolean_t	insetupscaling;
 t_compscale 	id0_seg *work;
 id0_unsigned_t BuildCompScale (id0_int_t height, memptr *finalspot);
 
-id0_int_t			stepbytwo;
 
 //===========================================================================
 
@@ -109,13 +108,6 @@ void SetupScaling (id0_int_t maxscaleheight)
 	{
 		if (scaledirectory[i])
 			MM_FreePtr ((memptr *)&scaledirectory[i]);
-		if (i>=stepbytwo)
-			// *** ALPHA RESTORATION ***
-#if (GAMEVER_WOLFREV <= GV_WR_WL920312)
-			i++;
-#else
-			i += 2;
-#endif
 	}
 	// *** ALPHA RESTORATION ***
 #if (GAMEVER_WOLFREV > GV_WR_WL920312)
@@ -127,19 +119,11 @@ void SetupScaling (id0_int_t maxscaleheight)
 //
 // build the compiled scalers
 //
-	stepbytwo = viewheight/2;	// save space by double stepping
 	MM_GetPtr ((memptr *)&work,20000);
 
 	for (i=1;i<=maxscaleheight;i++)
 	{
 		BuildCompScale (i*2,(memptr *)&scaledirectory[i]);
-		if (i>=stepbytwo)
-			// *** ALPHA RESTORATION ***
-#if (GAMEVER_WOLFREV <= GV_WR_WL920312)
-			i++;
-#else
-			i+= 2;
-#endif
 	}
 	MM_FreePtr ((memptr *)&work);
 
@@ -156,19 +140,6 @@ void SetupScaling (id0_int_t maxscaleheight)
 		fullscalefarcall[i] <<=16;
 #endif
 		fullscalefarcall[i] += scaledirectory[i]->codeofs[0];
-		if (i>=stepbytwo)
-		{
-			scaledirectory[i+1] = scaledirectory[i];
-			fullscalefarcall[i+1] = fullscalefarcall[i];
-			// *** ALPHA RESTORATION ***
-#if (GAMEVER_WOLFREV <= GV_WR_WL920312)
-			i++;
-#else
-			scaledirectory[i+2] = scaledirectory[i];
-			fullscalefarcall[i+2] = fullscalefarcall[i];
-			i+=2;
-#endif
-		}
 	}
 	scaledirectory[0] = scaledirectory[1];
 	fullscalefarcall[0] = fullscalefarcall[1];
