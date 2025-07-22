@@ -339,6 +339,17 @@ void ControlMovement (objtype *ob)
 //
 	playerxmove = player->x - oldx;
 	playerymove = player->y - oldy;
+
+	for (statobj_t* statptr = &statobjlist[0] ; statptr !=laststatobj ; statptr++)
+	{
+		if ((statptr->flags & FL_BONUS) != 0)
+		{
+			if ((statptr->tilex == player->tilex) && (statptr->tiley == player->tiley))
+			{
+				GetBonus(statptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1433,6 +1444,7 @@ void GetBonus (statobj_t *check)
 
 	StartBonusFlash ();
 	check->shapenum = -1;			// remove from list
+	check->flags &= ~FL_BONUS;
 }
 
 
