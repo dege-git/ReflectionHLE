@@ -1535,7 +1535,7 @@ void ClipMove (objtype *ob, id0_long_t xmove, id0_long_t ymove)
 	// *** S3DNA RESTORATION ***
 #ifndef GAMEVER_NOAH3D
 	if (!SD_SoundPlaying())
-		SD_PlaySound (HITWALLSND);
+		(void) (HITWALLSND);
 #endif
 
 	ob->x = basex+xmove;
