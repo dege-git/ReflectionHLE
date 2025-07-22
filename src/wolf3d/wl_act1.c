@@ -1065,12 +1065,7 @@ void MovePWalls (void)
 		// see if it should be pushed farther
 		//
 		// *** S3DNA RESTORATION ***
-		// Actually bugfix for a well-known pushwall bug
-#ifdef GAMEVER_NOAH3D
 		if (pwallstate>=256)
-#else
-		if (pwallstate>256)
-#endif
 		{
 		//
 		// the block has been pushed two tiles
