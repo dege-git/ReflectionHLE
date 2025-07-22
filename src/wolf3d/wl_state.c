@@ -1319,7 +1319,7 @@ id0_boolean_t CheckLine (objtype *ob)
 #else // GAMEVER_WOLFREV > GV_WR_WL1AP10
 		deltafrac = abs(x2-x1);
 		delta = y2-y1;
-		ltemp = ((id0_long_t)delta<<8)/deltafrac;
+		ltemp = (id0_long_t)((id0_unsigned_long_t)delta<<8)/deltafrac;
 		if (ltemp > 0x7fffl)
 			ystep = 0x7fff;
 		else if (ltemp < -0x7fffl)
@@ -1435,7 +1435,7 @@ id0_boolean_t CheckLine (objtype *ob)
 #else // GAMEVER_WOLFREV > GV_WR_WL1AP10
 		deltafrac = abs(y2-y1);
 		delta = x2-x1;
-		ltemp = ((id0_long_t)delta<<8)/deltafrac;
+		ltemp = (id0_long_t)((id0_unsigned_long_t)delta<<8)/deltafrac;
 		if (ltemp > 0x7fffl)
 			xstep = 0x7fff;
 		else if (ltemp < -0x7fffl)
