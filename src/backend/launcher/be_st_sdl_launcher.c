@@ -494,8 +494,8 @@ BEMenu g_beVideoSettingsMenu = {
 
 /*** Sounds settings menu ***/
 
-BUFFLINKAGE const int g_be_soundsSettingsChoices_sndSampleRateVals[] = {8000, 11025, 12000, 16000, 22050, 32000, 44100, 48000, 49716, 96000, 192000};
-static const char *g_be_soundsSettingsChoices_sndSampleRate[12] = {"8000","11025","12000","16000","22050","32000","44100","48000","49716","96000","192000",NULL};
+BUFFLINKAGE const int g_be_soundsSettingsChoices_sndSampleRateVals[] = {7000, 11025, 12000, 16000, 22050, 32000, 44100, 48000, 49716, 96000, 192000};
+static const char *g_be_soundsSettingsChoices_sndSampleRate[12] = {"7000","11025","12000","16000","22050","32000","44100","48000","49716","96000","192000",NULL};
 
 BEMENUITEM_DEF_TARGETMENU(g_beSoundSettingsMenuItem_DeviceVolumes, "Emulated device volumes", &g_beDeviceVolumesMenu)
 BEMENUITEM_DEF_SLIDER(g_beSoundSettingsMenuItem_SndSampleRate, "Sound sample rate\n(in Hz)", g_be_soundsSettingsChoices_sndSampleRate)
