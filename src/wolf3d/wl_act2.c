@@ -3226,8 +3226,8 @@ statetype s_fakeshoot7 	= {false,SPR_FAKE_SHOOT,8,NULL,T_FakeFire,&s_fakeshoot8}
 statetype s_fakeshoot8 	= {false,SPR_FAKE_SHOOT,8,NULL,T_FakeFire,&s_fakeshoot9};
 statetype s_fakeshoot9 	= {false,SPR_FAKE_SHOOT,8,NULL,NULL,&s_fakechase1};
 
-statetype s_fire1 	= {false,SPR_FIRE1,6,NULL,T_Projectile,&s_fire2};
-statetype s_fire2 	= {false,SPR_FIRE2,6,NULL,T_Projectile,&s_fire1};
+statetype s_fire1 	= {false,SPR_FIRE1,6,T_Projectile,NULL,&s_fire2};
+statetype s_fire2 	= {false,SPR_FIRE2,6,T_Projectile,NULL,&s_fire1};
 #endif
 
 //
