@@ -1834,7 +1834,7 @@ void Cmd_Use (void)
 #ifdef GAMEVER_NOAH3D
 		SD_PlaySound (NOWAYSND);
 #else
-		SD_PlaySound (DONOTHINGSND);
+		(void) (DONOTHINGSND);
 #endif
 
 }
