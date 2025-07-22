@@ -609,15 +609,6 @@ void HitVertWall (void)
 
 	if (lastside==1 && lastintercept == xtile && lasttilehit == tilehit)
 	{
-		// in the same wall type as last time, so check for optimized draw
-		if (texture == postsourceoff/*(id0_unsigned_t)postsource*/)
-		{
-		// wide scale
-			postwidth++;
-			wallheight[pixx] = wallheight[pixx-1];
-			return;
-		}
-		else
 		{
 			ScalePost ();
 			postsourceoff/*(id0_unsigned_t)postsource*/ = texture;
@@ -692,15 +683,6 @@ void HitHorizWall (void)
 
 	if (lastside==0 && lastintercept == ytile && lasttilehit == tilehit)
 	{
-		// in the same wall type as last time, so check for optimized draw
-		if (texture == postsourceoff/*(id0_unsigned_t)postsource*/)
-		{
-		// wide scale
-			postwidth++;
-			wallheight[pixx] = wallheight[pixx-1];
-			return;
-		}
-		else
 		{
 			ScalePost ();
 			postsourceoff/*(id0_unsigned_t)postsource*/ = texture;
@@ -776,15 +758,6 @@ void HitHorizDoor (void)
 
 	if (lasttilehit == tilehit)
 	{
-	// in the same door as last time, so check for optimized draw
-		if (texture == postsourceoff/*(id0_unsigned_t)postsource*/)
-		{
-		// wide scale
-			postwidth++;
-			wallheight[pixx] = wallheight[pixx-1];
-			return;
-		}
-		else
 		{
 			ScalePost ();
 			postsourceoff/*(id0_unsigned_t)postsource*/ = texture;
@@ -872,15 +845,6 @@ void HitVertDoor (void)
 
 	if (lasttilehit == tilehit)
 	{
-	// in the same door as last time, so check for optimized draw
-		if (texture == postsourceoff/*(id0_unsigned_t)postsource*/)
-		{
-		// wide scale
-			postwidth++;
-			wallheight[pixx] = wallheight[pixx-1];
-			return;
-		}
-		else
 		{
 			ScalePost ();
 			postsourceoff/*(id0_unsigned_t)postsource*/ = texture;
@@ -981,15 +945,6 @@ void HitHorizPWall (void)
 
 	if (lasttilehit == tilehit)
 	{
-		// in the same wall type as last time, so check for optimized draw
-		if (texture == postsourceoff/*(id0_unsigned_t)postsource*/)
-		{
-		// wide scale
-			postwidth++;
-			wallheight[pixx] = wallheight[pixx-1];
-			return;
-		}
-		else
 		{
 			ScalePost ();
 			postsourceoff/*(id0_unsigned_t)postsource*/ = texture;
@@ -1051,15 +1006,6 @@ void HitVertPWall (void)
 
 	if (lasttilehit == tilehit)
 	{
-		// in the same wall type as last time, so check for optimized draw
-		if (texture == postsourceoff/*(id0_unsigned_t)postsource*/)
-		{
-		// wide scale
-			postwidth++;
-			wallheight[pixx] = wallheight[pixx-1];
-			return;
-		}
-		else
 		{
 			ScalePost ();
 			postsourceoff/*(id0_unsigned_t)postsource*/ = texture;
