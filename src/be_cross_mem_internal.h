@@ -33,9 +33,9 @@
 
 enum { EMULATED_PSP_SIZE = 256,
        EMULATED_NEAR_SIZE = 16 * 213,
-       EMULATED_CONVENTIONAL_SIZE = 619 /*640*/ * 1024,
+       EMULATED_CONVENTIONAL_SIZE = 640 * 1024,
        EMULATED_EMS_SIZE = 65536 };
-
+// A gap between the near and far heaps
 extern uint32_t g_be_current_exeTotalMem;
 extern uint8_t g_be_emulatedMemSpace[EMULATED_CONVENTIONAL_SIZE + EMULATED_EMS_SIZE];
 
