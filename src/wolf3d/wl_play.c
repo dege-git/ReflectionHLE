@@ -103,7 +103,7 @@ id0_int_t			buttonscan[NUMBUTTONS] =
 #else
 			{sc_Control,sc_Alt,sc_RShift,sc_Space,sc_1,sc_2,sc_3,sc_4};
 #endif
-id0_int_t			buttonmouse[4]={bt_attack,bt_strafe,bt_use,bt_nobutton};
+id0_int_t			buttonmouse[4]={bt_attack,bt_nobutton,bt_use,bt_nobutton};
 id0_int_t			buttonjoy[4]={bt_attack,bt_strafe,bt_use,bt_run};
 
 id0_int_t			viewsize;
@@ -355,7 +355,6 @@ musicnames songs[]=
 */
 
 
-#define BASEMOVE		35
 #define RUNMOVE			70
 #define BASETURN		35
 #define RUNTURN			70
@@ -467,10 +466,6 @@ void PollKeyboardMove (void)
 			controly -= RUNMOVE*tics;
 		if (Keyboard[dirscan[di_south]] && !g_keybind_used_down)
 			controly += RUNMOVE*tics;
-		if (Keyboard[dirscan[di_west]] && !g_keybind_used_left)
-			controlx -= RUNMOVE*tics;
-		if (Keyboard[dirscan[di_east]] && !g_keybind_used_right)
-			controlx += RUNMOVE*tics;
 	}
 	else
 	{
@@ -478,10 +473,6 @@ void PollKeyboardMove (void)
 			controly -= BASEMOVE*tics;
 		if (Keyboard[dirscan[di_south]] && !g_keybind_used_down)
 			controly += BASEMOVE*tics;
-		if (Keyboard[dirscan[di_west]] && !g_keybind_used_left)
-			controlx -= BASEMOVE*tics;
-		if (Keyboard[dirscan[di_east]] && !g_keybind_used_right)
-			controlx += BASEMOVE*tics;
 	}
 }
 

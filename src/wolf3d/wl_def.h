@@ -1067,6 +1067,7 @@ enum	{
 #endif
 };
 
+#define BASEMOVE		35
 
 	// *** S3DNA RESTORATION ***
 #ifdef GAMEVER_NOAH3D

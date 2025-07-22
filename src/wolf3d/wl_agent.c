@@ -272,28 +272,26 @@ void ControlMovement (objtype *ob)
 //
 // side to side move
 //
-	if (buttonstate[bt_strafe])
 	{
 	//
 	// strafing
 	//
 	//
-		if (controlx > 0)
+		if (Keyboard[dirscan[di_east]] && !g_keybind_used_right)
 		{
 			angle = ob->angle - ANGLES/4;
 			if (angle < 0)
 				angle += ANGLES;
-			Thrust (angle,controlx*MOVESCALE);	// move to left
+			Thrust (angle,(controly != 0) ? (abs(controly*MOVESCALE)) : (BASEMOVE * tics * MOVESCALE));	// move to right
 		}
-		else if (controlx < 0)
+		else if (Keyboard[dirscan[di_west]] && !g_keybind_used_left)
 		{
 			angle = ob->angle + ANGLES/4;
 			if (angle >= ANGLES)
 				angle -= ANGLES;
-			Thrust (angle,-controlx*MOVESCALE);	// move to right
+			Thrust (angle,(controly != 0) ? (abs(controly*MOVESCALE)) : (BASEMOVE * tics * MOVESCALE));	// move to left
 		}
 	}
-	else
 	{
 	//
 	// not strafing
