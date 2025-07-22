@@ -318,7 +318,7 @@ musicnames songs[]=
  XFUNKIE_MUS,
  XDEATH_MUS,
  XGETYOU_MUS,		// DON'T KNOW
- ULTIMATE_MUS,	// Trans Gr”sse
+ ULTIMATE_MUS,	// Trans Grï¿½sse
 
  DUNGEON_MUS,
  GOINGAFT_MUS,
@@ -461,7 +461,7 @@ static void PollUserBindsButtons (void)
 
 void PollKeyboardMove (void)
 {
-	if (buttonstate[bt_run])
+	if (!buttonstate[bt_run])
 	{
 		if (Keyboard[dirscan[di_north]] && !g_keybind_used_up)
 			controly -= RUNMOVE*tics;
