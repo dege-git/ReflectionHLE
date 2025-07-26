@@ -1253,6 +1253,7 @@ id0_boolean_t CheckLine (objtype *ob)
 	id0_int_t	xfrac,yfrac,deltafrac;
 #endif
 	id0_unsigned_t	value,intercept;
+	objtype* check;
 
 	x1 = ob->x >> UNSIGNEDSHIFT;		// 1/256 tile precision
 	y1 = ob->y >> UNSIGNEDSHIFT;
@@ -1347,6 +1348,7 @@ id0_boolean_t CheckLine (objtype *ob)
 				continue;
 #else
 			value = (id0_unsigned_t)tilemap[x][y];
+			check = (actorat[x][y] > refkeen_compat_wl_play_objoffset) ? (COMPAT_OBJ_CONVERT_DOS_PTR_TO_OBJ_PTR(actorat[x][y])) : (NULL);
 			// *** S3DNA RESTORATION ***
 #ifdef GAMEVER_NOAH3D
 			value &= 0xFFDF;
@@ -1374,6 +1376,13 @@ id0_boolean_t CheckLine (objtype *ob)
 #endif
 			if (intercept>doorposition[value])
 				return false;
+
+			// another actor blocks the line
+			if ((check != NULL) && (check != player) && (check != ob) && ((check->flags & FL_SHOOTABLE) != 0))
+			{
+				//BE_Cross_LogMessage(BE_LOG_MSG_NORMAL, "CheckLine x: %d blocked by %d on frame %d\n", ob->obclass, check->obclass, frameon);
+				return false;
+			}
 
 		// *** SHAREWARE V1.0 APOGEE RESTORATION ***
 #if (GAMEVER_WOLFREV <= GV_WR_WL1AP10)
@@ -1463,6 +1472,7 @@ id0_boolean_t CheckLine (objtype *ob)
 				continue;
 #else
 			value = (id0_unsigned_t)tilemap[x][y];
+			check = (actorat[x][y] > refkeen_compat_wl_play_objoffset) ? (COMPAT_OBJ_CONVERT_DOS_PTR_TO_OBJ_PTR(actorat[x][y])) : (NULL);
 			// *** S3DNA RESTORATION ***
 #ifdef GAMEVER_NOAH3D
 			value &= 0xFFDF;
@@ -1490,6 +1500,14 @@ id0_boolean_t CheckLine (objtype *ob)
 #endif
 			if (intercept>doorposition[value])
 				return false;
+
+			// another actor blocks the line
+			if ((check != NULL) && (check != player) && (check != ob) && ((check->flags & FL_SHOOTABLE) != 0))
+			{
+				//BE_Cross_LogMessage(BE_LOG_MSG_NORMAL, "CheckLine y: %d blocked by %d on frame %d\n", ob->obclass, check->obclass, frameon);
+				return false;
+			}
+
 		// *** SHAREWARE V1.0 APOGEE RESTORATION ***
 #if (GAMEVER_WOLFREV <= GV_WR_WL1AP10)
 		}
