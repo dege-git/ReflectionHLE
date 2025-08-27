@@ -103,7 +103,7 @@ id0_int_t			buttonscan[NUMBUTTONS] =
 #else
 			{sc_Control,sc_Alt,sc_RShift,sc_Space,sc_1,sc_2,sc_3,sc_4};
 #endif
-id0_int_t			buttonmouse[4]={bt_attack,bt_nobutton,bt_use,bt_nobutton};
+id0_int_t			buttonmouse[4]={bt_attack,bt_strafe,bt_use,bt_nobutton};
 id0_int_t			buttonjoy[4]={bt_attack,bt_strafe,bt_use,bt_run};
 
 id0_int_t			viewsize;
