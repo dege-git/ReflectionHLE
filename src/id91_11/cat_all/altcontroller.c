@@ -353,10 +353,10 @@ BE_ST_ControllerMapping g_ingame_altcontrol_mapping_funckeys = {
 	{0},
 	{
 		// Face buttons
-		{NULL, BE_ST_SC_F3, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_F2, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_F4, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_F1, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{0},
+		{0},
+		{0},
+		{0},
 		{0},
 		{0},
 		// Start button
@@ -365,10 +365,11 @@ BE_ST_ControllerMapping g_ingame_altcontrol_mapping_funckeys = {
 		{0},
 		{0},
 		{0},
-		{0},
-		{0},
-		{0},
-		{0}
+		// D-pad
+		{NULL, BE_ST_SC_F1, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{NULL, BE_ST_SC_F3, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{NULL, BE_ST_SC_F4, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{NULL, BE_ST_SC_F2, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
 	},
 	{0},
 	true,

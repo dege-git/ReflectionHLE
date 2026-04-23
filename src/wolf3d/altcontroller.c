@@ -247,10 +247,10 @@ BE_ST_ControllerMapping g_ingame_altcontrol_mapping_weapons = {
 	{0},
 	{
 		// Face buttons
-		{0},
 		{NULL, BE_ST_SC_6, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{0},
 		{NULL, BE_ST_SC_5, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{0},
+		{0},
 		{0},
 		{0},
 		// Start button
@@ -336,10 +336,10 @@ BE_ST_ControllerMapping g_ingame_altcontrol_mapping_funckeys = {
 	{0},
 	{
 		// Face buttons
-		{NULL, BE_ST_SC_F7, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_F8, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
 		{NULL, BE_ST_SC_F9, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{NULL, BE_ST_SC_F8, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
 		{NULL, BE_ST_SC_F10, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{NULL, BE_ST_SC_F7, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
 		{0},
 		{0},
 		// Start button
@@ -350,9 +350,9 @@ BE_ST_ControllerMapping g_ingame_altcontrol_mapping_funckeys = {
 		{0},
 		// D-pad
 		{0},
-		{NULL, BE_ST_SC_F1, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_F3, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
 		{NULL, BE_ST_SC_F2, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{NULL, BE_ST_SC_F3, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{NULL, BE_ST_SC_F1, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
 	},
 	{0},
 	true,

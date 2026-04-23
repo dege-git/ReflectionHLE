@@ -4,6 +4,10 @@ Changelog
 
 TBD:
 
+Note that there were some changes to specific gamepad button assignments
+and on-screen touch controls, for at least a few reasons.
+See "User input changes" for more details. Sorry for any convenience.
+
 Added initial support for BioMenace, aka, Bio Menace.
 * That covers all DOS versions known as of writing this, including
 the BioHazard July 1992 beta as re-released in February 2025.
@@ -29,12 +33,22 @@ and the cfg files similarly keep using a-b-x-y.
 and east face buttons, matching PS gamepads' Cross and Circle buttons.
 That will also have an effect on touch input when on-screen face buttons
 appear on the bottom-right corner, as they should further appear
-while using a supported gamepad (under the moderm controller scheme).
+while using a supported gamepad (under the modern controller scheme).
 There are instances in which swapping won't have an effect, like
 when customizable gamepad binds used for gameplay have an effect.
 - With partial relation to the above, relocated a few other
 on-screen touch buttons in Keen Dreams' control panel
 and death dialog, plus Wolfenstein 3D's menus.
+- Catacomb Adventure Series: A gamepad's d-pad (also on-screen) is used
+for emulation of keyboard's function keys, instead of face buttons.
+Main reason being increased consistency with other supported games.
+A subset of them should have greater preference for d-pad usage over face
+buttons at times, in order to improve support for devices with less buttons.
+- Wolfenstein 3D: Reorder function keys as accessible from a gamepad's
+d-pad and face buttons (also on-screen), for improved consistency with
+other supported games. Also re-assigned on-screen face buttons used
+for Super 3-D Noah's Ark cantaloupe and watermelon launchers (weapons 5-6),
+as a preparation for user input devices with less buttons.
 - On-screen keyboard won't disappear if pressing nearby,
 using mouse or touch input.
 
