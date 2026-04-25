@@ -29,8 +29,8 @@ Series (or at least specific versions of the episodes).
 Spear of Destiny, along with two versions of 3D Catacomb games
 and the one DOS version of Super 3-D Noah's Ark.
 
-As of Sep 26 2024, the additional sources in question may be found here:
-https://bitbucket.org/gamesrc-ver-recreation/
+As of Apr 25 2026, the additional sources in question may be found here:
+https://github.com/gamesrc-ver-recreation/
 
 ## Keen Dreams open-source release
 
