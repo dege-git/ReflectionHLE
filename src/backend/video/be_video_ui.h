@@ -46,7 +46,7 @@ typedef struct {
 		struct {
 			int x, y;
 		} key;
-		int padButtonScanCode;
+		int padButton;
 		int touchMappingIndex;
 	} miscData;
 } BESDLTrackedFinger;

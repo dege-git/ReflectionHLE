@@ -169,8 +169,11 @@ typedef struct {
 	// For BE_ST_CTRL_MAP_OTHERMAPPING: Points at another mapping.
 	// For BE_ST_CTRL_MAP_VALUESET: Points at an integer to set as-is.
 	void *miscPtr;
+	// For BE_ST_CTRL_MAP_KEYSCANCODE: Represents a DOS-era scancode.
+	// For BE_ST_CTRL_MAP_MOUSEBUTTON: DOS-era mouse button number.
+	// For BE_ST_CTRL_MAP_VALUESET: Show a label (scancode) in pad/touch UI.
 	int val;
-	int secondaryVal; // Used for BE_ST_CTRL_MAP_MOUSEMOTION/VALUESET
+	int secondaryVal; // Scaling factor for BE_ST_CTRL_MAP_MOUSEMOTION/VALUESET
 	BE_ST_ControllerSingleMapClass mapClass;
 } BE_ST_ControllerSingleMap;
 

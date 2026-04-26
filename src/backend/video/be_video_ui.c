@@ -360,22 +360,34 @@ static void BEL_ST_PrepareToShowOnePad(const int *scanCodes, const char **padXpm
 	g_sdlForceGfxControlUiRefresh = true;
 }
 
+static int BEL_ST_GetUIScancodeFromSingleMap(const BE_ST_ControllerSingleMap *singleMap)
+{
+	switch (singleMap->mapClass)
+	{
+	case BE_ST_CTRL_MAP_KEYSCANCODE:
+	case BE_ST_CTRL_MAP_VALUESET:
+		return singleMap->val;
+	default:
+		return '\0';
+	}
+}
+
 /*static*/ void BEL_ST_PrepareToShowControllerUI(const BE_ST_ControllerMapping *mapping)
 {
 	bool swapConfirmCancel = g_refKeenCfg.swapConfirmCancel && !mapping->ignoreConfirmCancelSwap;
 	int confirmButton = swapConfirmCancel ? BE_ST_CTRL_BUT_B : BE_ST_CTRL_BUT_A;
 	int cancelButton = swapConfirmCancel ? BE_ST_CTRL_BUT_A : BE_ST_CTRL_BUT_B;
 	const int faceButtonsScancodes[4] = {
-		(mapping->pbuttons[confirmButton].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[confirmButton].val : '\0',
-		(mapping->pbuttons[cancelButton].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[cancelButton].val : '\0',
-		(mapping->pbuttons[BE_ST_CTRL_BUT_X].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[BE_ST_CTRL_BUT_X].val : '\0',
-		(mapping->pbuttons[BE_ST_CTRL_BUT_Y].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[BE_ST_CTRL_BUT_Y].val : '\0'
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[confirmButton]),
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[cancelButton]),
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[BE_ST_CTRL_BUT_X]),
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[BE_ST_CTRL_BUT_Y])
 	};
 	const int dpadScancodes[4] = {
-		(mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_DOWN].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_DOWN].val : '\0',
-		(mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_RIGHT].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_RIGHT].val : '\0',
-		(mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_LEFT].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_LEFT].val : '\0',
-		(mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_UP].mapClass == BE_ST_CTRL_MAP_KEYSCANCODE) ? mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_UP].val : '\0'
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_DOWN]),
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_RIGHT]),
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_LEFT]),
+		BEL_ST_GetUIScancodeFromSingleMap(&mapping->pbuttons[BE_ST_CTRL_BUT_DPAD_UP])
 	};
 	const int emptyScancodesArray[4] = {'\0'};
 
@@ -1300,32 +1312,31 @@ void BEL_ST_CheckReleasedPointerInDebugKeysUI(BE_ST_TouchID touchId, BE_ST_Finge
 	g_sdlForceGfxControlUiRefresh = true;
 }
 
-// Returns matching scanCode if found (possibly 0 if not set), -1 if not
-// pointed at button/dpad (also checking for transparent pixels, or 0 otherwise
-static int BEL_ST_GetControllerUIScanCodeFromPointer(int x, int y)
+// Returns matching controller button or d-pad direction
+// if found, BE_ST_CTRL_BUT_INVALID if not pointing at button/dpad
+// (also checking for transparent pixels), or BE_ST_CTRL_BUT_GUIDE otherwise.
+static int BEL_ST_GetControllerUIButtonFromPointer(int x, int y)
 {
 	if ((x >= g_sdlControllerFaceButtonsRect.x) && (x < g_sdlControllerFaceButtonsRect.x+g_sdlControllerFaceButtonsRect.w)
 	    && (y >= g_sdlControllerFaceButtonsRect.y) && (y < g_sdlControllerFaceButtonsRect.y+g_sdlControllerFaceButtonsRect.h))
 	{
-		bool swapConfirmCancel = g_refKeenCfg.swapConfirmCancel &&
-		                         !g_sdlControllerMappingActualCurr->ignoreConfirmCancelSwap;
 		// Normalize coordinates to pad
 		x = (x-g_sdlControllerFaceButtonsRect.x)*ALTCONTROLLER_FACEBUTTONS_PIX_DIM/g_sdlControllerFaceButtonsRect.w;
 		y = (y-g_sdlControllerFaceButtonsRect.y)*ALTCONTROLLER_FACEBUTTONS_PIX_DIM/g_sdlControllerFaceButtonsRect.h;
 		switch (pad_thumb_buttons_xpm[y+ALTCONTROLLER_PAD_XPM_ROW_OFFSET][x])
 		{
 			case '%':
-				return g_sdlFaceButtonsScanCodes[0];
+				return BE_ST_CTRL_BUT_A;
 			case '$':
-				return g_sdlFaceButtonsScanCodes[1];
+				return BE_ST_CTRL_BUT_B;
 			case '#':
-				return g_sdlFaceButtonsScanCodes[2];
+				return BE_ST_CTRL_BUT_X;
 			case '+':
-				return g_sdlFaceButtonsScanCodes[3];
-			case ' ':
-				return -1; // Totally transparent
+				return BE_ST_CTRL_BUT_Y;
+			case ' ': // Totally transparent
+				return BE_ST_CTRL_BUT_INVALID;
 			default:
-				return 0;
+				return BE_ST_CTRL_BUT_GUIDE;
 		}
 	}
 	else if ((x >= g_sdlControllerDpadRect.x) && (x < g_sdlControllerDpadRect.x+g_sdlControllerDpadRect.w)
@@ -1337,20 +1348,37 @@ static int BEL_ST_GetControllerUIScanCodeFromPointer(int x, int y)
 		switch (pad_dpad_xpm[y+ALTCONTROLLER_PAD_XPM_ROW_OFFSET][x])
 		{
 			case '%':
-				return g_sdlDpadScanCodes[0];
+				return BE_ST_CTRL_BUT_DPAD_DOWN;
 			case '$':
-				return g_sdlDpadScanCodes[1];
+				return BE_ST_CTRL_BUT_DPAD_RIGHT;
 			case '#':
-				return g_sdlDpadScanCodes[2];
+				return BE_ST_CTRL_BUT_DPAD_LEFT;
 			case '+':
-				return g_sdlDpadScanCodes[3];
-			case ' ':
-				return -1; // Totally transparent
+				return BE_ST_CTRL_BUT_DPAD_UP;
+			case ' ': // Totally transparent
+				return BE_ST_CTRL_BUT_INVALID;
 			default:
-				return 0;
+				return BE_ST_CTRL_BUT_GUIDE;
 		}
 	}
-	return -1;
+	return BE_ST_CTRL_BUT_INVALID;
+}
+
+static void BEL_ST_HandleDefaultPointerActionInControllerUI(int but, bool isPressed)
+{
+	if (but == BE_ST_CTRL_BUT_INVALID)
+		BEL_ST_AltControlScheme_HandleEntry(
+			&g_sdlControllerMappingActualCurr->defaultMapping,
+			isPressed ? g_sdlJoystickAxisMax : 0,
+			&g_sdlDefaultMappingBinaryState);
+	else if (but != BE_ST_CTRL_BUT_GUIDE)
+	{
+		bool lastBinaryStatus = !isPressed;
+		BEL_ST_AltControlScheme_HandleEntry(
+			&g_sdlControllerMappingActualCurr->pbuttons[but],
+			isPressed ? g_sdlJoystickAxisMax : 0,
+			&lastBinaryStatus);
+	}
 }
 
 void BEL_ST_CheckPressedPointerInControllerUI(BE_ST_TouchID touchId, BE_ST_FingerID fingerId, int x, int y)
@@ -1359,21 +1387,11 @@ void BEL_ST_CheckPressedPointerInControllerUI(BE_ST_TouchID touchId, BE_ST_Finge
 	if (!trackedFinger)
 		return;
 
-	int scanCode = BEL_ST_GetControllerUIScanCodeFromPointer(x,y);
-	trackedFinger->miscData.padButtonScanCode = scanCode;
-	if (scanCode > 0)
-	{
-		emulatedDOSKeyEvent dosKeyEvent;
-		dosKeyEvent.isSpecial = false;
-		dosKeyEvent.dosScanCode = scanCode;
-		BEL_ST_HandleEmuKeyboardEvent(true, false, dosKeyEvent);
-	}
-	else if (scanCode < 0)
-	{
+	int but = BEL_ST_GetControllerUIButtonFromPointer(x,y);
+	trackedFinger->miscData.padButton = but;
+	if (but == BE_ST_CTRL_BUT_INVALID)
 		trackedFinger->isDefaultBinaryStateToggle = true;
-		BEL_ST_AltControlScheme_HandleEntry(&g_sdlControllerMappingActualCurr->defaultMapping, g_sdlJoystickAxisMax, &g_sdlDefaultMappingBinaryState);
-	}
-
+	BEL_ST_HandleDefaultPointerActionInControllerUI(but, true);
 }
 
 void BEL_ST_CheckReleasedPointerInControllerUI(BE_ST_TouchID touchId, BE_ST_FingerID fingerId)
@@ -1382,24 +1400,9 @@ void BEL_ST_CheckReleasedPointerInControllerUI(BE_ST_TouchID touchId, BE_ST_Fing
 	if (!trackedFinger)
 		return;
 
-	int scanCode = trackedFinger->miscData.padButtonScanCode;
-
-	bool isDefaultBinaryStateToggle = trackedFinger->isDefaultBinaryStateToggle;
+	int but = trackedFinger->miscData.padButton;
 	BEL_ST_RemoveTrackedFinger(trackedFinger);
-
-	if (isDefaultBinaryStateToggle)
-	{
-		BEL_ST_AltControlScheme_HandleEntry(&g_sdlControllerMappingActualCurr->defaultMapping, 0, &g_sdlDefaultMappingBinaryState);
-		return;
-	}
-
-	if (scanCode)
-	{
-		emulatedDOSKeyEvent dosKeyEvent;
-		dosKeyEvent.isSpecial = false;
-		dosKeyEvent.dosScanCode = trackedFinger->miscData.padButtonScanCode;
-		BEL_ST_HandleEmuKeyboardEvent(false, false, dosKeyEvent);
-	}
+	BEL_ST_HandleDefaultPointerActionInControllerUI(but, false);
 }
 
 void BEL_ST_CheckMovedPointerInControllerUI(BE_ST_TouchID touchId, BE_ST_FingerID fingerId, int x, int y)
@@ -1408,28 +1411,18 @@ void BEL_ST_CheckMovedPointerInControllerUI(BE_ST_TouchID touchId, BE_ST_FingerI
 	if (!trackedFinger || trackedFinger->isDefaultBinaryStateToggle)
 		return;
 
-	int oldScanCode = trackedFinger->miscData.padButtonScanCode;
-	int newScanCode = BEL_ST_GetControllerUIScanCodeFromPointer(x,y);
+	int oldBut = trackedFinger->miscData.padButton;
+	int newBut = BEL_ST_GetControllerUIButtonFromPointer(x,y);
 
-	if (newScanCode < 0)
-		newScanCode = 0;
+	if (newBut == BE_ST_CTRL_BUT_INVALID)
+		newBut = BE_ST_CTRL_BUT_GUIDE;
 
-	trackedFinger->miscData.padButtonScanCode = newScanCode;
+	trackedFinger->miscData.padButton = newBut;
 
-	if (oldScanCode != newScanCode)
+	if (oldBut != newBut)
 	{
-		emulatedDOSKeyEvent dosKeyEvent;
-		dosKeyEvent.isSpecial = false;
-		if (oldScanCode)
-		{
-			dosKeyEvent.dosScanCode = oldScanCode;
-			BEL_ST_HandleEmuKeyboardEvent(false, false, dosKeyEvent);
-		}
-		if (newScanCode)
-		{
-			dosKeyEvent.dosScanCode = newScanCode;
-			BEL_ST_HandleEmuKeyboardEvent(true, false, dosKeyEvent);
-		}
+		BEL_ST_HandleDefaultPointerActionInControllerUI(oldBut, false);
+		BEL_ST_HandleDefaultPointerActionInControllerUI(newBut, true);
 	}
 }
 
