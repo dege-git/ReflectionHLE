@@ -991,6 +991,10 @@ BEMENUITEM_DEF_CTRL_BINDS(Wolf3D, Weapon3, "Weapon 3")
 BEMENUITEM_DEF_CTRL_BINDS(Wolf3D, Weapon4, "Weapon 4")
 BEMENUITEM_DEF_CTRL_BINDS(Wolf3D, Weapon5, "Weapon 5 (S3DNA)")
 BEMENUITEM_DEF_CTRL_BINDS(Wolf3D, Weapon6, "Weapon 6 (S3DNA)")
+#ifdef BE_ST_ENABLE_SHORTCUTS_MOUSE_BINDS
+BEMENUITEM_DEF_CTRL_MOUSE_BIND(Wolf3D, WeaponSel, "Weapon selection")
+#endif
+BEMENUITEM_DEF_CTRL_PAD_BIND(Wolf3D, WeaponSel, "Weapon selection")
 BEMENUITEM_DEF_CTRL_BINDS(Wolf3D, Map, "Automap (S3DNA)")
 #ifdef BE_ST_ENABLE_SHORTCUTS_MOUSE_BINDS
 BEMENUITEM_DEF_CTRL_MOUSE_BIND(Wolf3D, FuncKeys, "Function keys")
@@ -1015,6 +1019,7 @@ static BEMenuItem *g_beWolf3DKeyBindsMenuItems[] = {
 	&g_beWolf3DKeyBindsMenuItem_Action_Weapon4,
 	&g_beWolf3DKeyBindsMenuItem_Action_Weapon5,
 	&g_beWolf3DKeyBindsMenuItem_Action_Weapon6,
+//	&g_beWolf3DKeyBindsMenuItem_Action_WeaponSel,
 	&g_beWolf3DKeyBindsMenuItem_Action_Map,
 //	&g_beWolf3DKeyBindsMenuItem_Action_FuncKeys,
 //	&g_beWolf3DKeyBindsMenuItem_Action_DebugKeys,
@@ -1045,6 +1050,9 @@ static BEMenuItem *g_beWolf3DMouseBindsMenuItems[] = {
 	&g_beWolf3DMouseBindsMenuItem_Action_Weapon4,
 	&g_beWolf3DMouseBindsMenuItem_Action_Weapon5,
 	&g_beWolf3DMouseBindsMenuItem_Action_Weapon6,
+#ifdef BE_ST_ENABLE_SHORTCUTS_MOUSE_BINDS
+	&g_beWolf3DMouseBindsMenuItem_Action_WeaponSel,
+#endif
 	&g_beWolf3DMouseBindsMenuItem_Action_Map,
 #ifdef BE_ST_ENABLE_SHORTCUTS_MOUSE_BINDS
 	&g_beWolf3DMouseBindsMenuItem_Action_FuncKeys,
@@ -1081,6 +1089,7 @@ static BEMenuItem *g_beWolf3DPadBindsMenuItems[] = {
 	&g_beWolf3DPadBindsMenuItem_Action_Weapon4,
 	&g_beWolf3DPadBindsMenuItem_Action_Weapon5,
 	&g_beWolf3DPadBindsMenuItem_Action_Weapon6,
+	&g_beWolf3DPadBindsMenuItem_Action_WeaponSel,
 	&g_beWolf3DPadBindsMenuItem_Action_Map,
 	&g_beWolf3DPadBindsMenuItem_Action_FuncKeys,
 	&g_beWolf3DPadBindsMenuItem_Action_DebugKeys,

@@ -131,6 +131,7 @@ static const BE_ST_ControllerSingleMap
 #ifdef GAMEVER_NOAH3D
        g_ingame_but_map_map        = {BUT_MAP_MAP},
 #endif
+       g_ingame_but_weapon_sel_map = {BUT_WEAPONS_MAP},
        g_ingame_but_func_keys_map  = {BUT_FUNC_KEYS_MAP},
        g_ingame_but_debug_keys_map = {BUT_DEBUG_KEYS_MAP};
 
@@ -577,8 +578,11 @@ void RefKeen_PrepareAltControllerScheme(void)
 	CheckMappings(BE_ST_CTRL_BIND_WOLF3D_MAP, &g_ingame_but_map_map, &g_keybind_used_map);
 #endif
 #ifdef BE_ST_ENABLE_SHORTCUTS_MOUSE_BINDS
+	CheckNonKeyMappings(BE_ST_CTRL_BIND_WOLF3D_WEAPONSEL, &g_ingame_but_weapon_sel_map);
 	CheckNonKeyMappings(BE_ST_CTRL_BIND_WOLF3D_FUNCKEYS, &g_ingame_but_func_keys_map);
 #else
+	CheckPadMapping(g_refKeenCfg.wolf3d.binds[BE_ST_CTRL_BIND_WOLF3D_WEAPONSEL].pad,
+	                &g_ingame_but_weapon_sel_map);
 	CheckPadMapping(g_refKeenCfg.wolf3d.binds[BE_ST_CTRL_BIND_WOLF3D_FUNCKEYS].pad,
 	                &g_ingame_but_func_keys_map);
 #endif

@@ -49,6 +49,8 @@ d-pad and face buttons (also on-screen), for improved consistency with
 other supported games. Also re-assigned on-screen face buttons used
 for Super 3-D Noah's Ark cantaloupe and watermelon launchers (weapons 5-6),
 as a preparation for user input devices with less buttons.
+- Wolfenstein 3D: Support defining a gamepad button bind for selecting
+a weapon using on-screen UI (weapons carousel).
 - Wolfenstein 3D: Fixed on-screen d-pad or face button use for
 selecting a specific weapon not working as expected in case of previously
 defining a custom bind for a key used for selecting the matching weapon.
