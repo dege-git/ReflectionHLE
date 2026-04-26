@@ -81,6 +81,15 @@ extern BE_ST_ControllerMapping g_ingame_altcontrol_mapping_funckeys;
 #define BUT_STRAFE_MAP     &g_binding_value_button[1], 0, 127, BE_ST_CTRL_MAP_VALUESET
 #define BUT_RUN_MAP        &g_binding_value_button[2], 0, 127, BE_ST_CTRL_MAP_VALUESET
 #define BUT_USE_MAP        &g_binding_value_button[3], 0, 127, BE_ST_CTRL_MAP_VALUESET
+
+// Scancodes are set for on-screen UI
+#define BUT_WEAPON1_MAP    &g_binding_value_button[4], BE_ST_SC_1, 127, BE_ST_CTRL_MAP_VALUESET
+#define BUT_WEAPON2_MAP    &g_binding_value_button[5], BE_ST_SC_2, 127, BE_ST_CTRL_MAP_VALUESET
+#define BUT_WEAPON3_MAP    &g_binding_value_button[6], BE_ST_SC_3, 127, BE_ST_CTRL_MAP_VALUESET
+#define BUT_WEAPON4_MAP    &g_binding_value_button[7], BE_ST_SC_4, 127, BE_ST_CTRL_MAP_VALUESET
+#define BUT_WEAPON5_MAP    &g_binding_value_button[8], BE_ST_SC_5, 127, BE_ST_CTRL_MAP_VALUESET
+#define BUT_WEAPON6_MAP    &g_binding_value_button[9], BE_ST_SC_6, 127, BE_ST_CTRL_MAP_VALUESET
+
 #define BUT_UP_MAP         &g_binding_value_up, 0, 127, BE_ST_CTRL_MAP_VALUESET
 #define BUT_DOWN_MAP       &g_binding_value_down, 0, 127, BE_ST_CTRL_MAP_VALUESET
 #define BUT_LEFT_MAP       &g_binding_value_left, 0, 127, BE_ST_CTRL_MAP_VALUESET
@@ -102,13 +111,13 @@ static const BE_ST_ControllerSingleMap
        g_ingame_but_run_map        = {BUT_RUN_MAP},
        g_ingame_but_use_map        = {BUT_USE_MAP},
        g_ingame_but_weapon_map[] = {
-        {&g_binding_value_button[4], 0, 127, BE_ST_CTRL_MAP_VALUESET},
-        {&g_binding_value_button[5], 0, 127, BE_ST_CTRL_MAP_VALUESET},
-        {&g_binding_value_button[6], 0, 127, BE_ST_CTRL_MAP_VALUESET},
-        {&g_binding_value_button[7], 0, 127, BE_ST_CTRL_MAP_VALUESET},
+        {BUT_WEAPON1_MAP},
+        {BUT_WEAPON2_MAP},
+        {BUT_WEAPON3_MAP},
+        {BUT_WEAPON4_MAP},
 #ifdef GAMEVER_NOAH3D
-        {&g_binding_value_button[8], 0, 127, BE_ST_CTRL_MAP_VALUESET},
-        {&g_binding_value_button[9], 0, 127, BE_ST_CTRL_MAP_VALUESET}
+        {BUT_WEAPON5_MAP},
+        {BUT_WEAPON6_MAP},
 #endif
        },
        g_ingame_but_up_map         = {BUT_UP_MAP},
@@ -247,8 +256,8 @@ BE_ST_ControllerMapping g_ingame_altcontrol_mapping_weapons = {
 	{0},
 	{
 		// Face buttons
-		{NULL, BE_ST_SC_6, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_5, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{BUT_WEAPON6_MAP},
+		{BUT_WEAPON5_MAP},
 		{0},
 		{0},
 		{0},
@@ -260,10 +269,10 @@ BE_ST_ControllerMapping g_ingame_altcontrol_mapping_weapons = {
 		{0},
 		{0},
 		// D-pad
-		{NULL, BE_ST_SC_1, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_3, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_4, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
-		{NULL, BE_ST_SC_2, 0, BE_ST_CTRL_MAP_KEYSCANCODE},
+		{BUT_WEAPON1_MAP},
+		{BUT_WEAPON3_MAP},
+		{BUT_WEAPON4_MAP},
+		{BUT_WEAPON2_MAP},
 	},
 	{0},
 	true,
