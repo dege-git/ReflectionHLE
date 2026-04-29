@@ -204,8 +204,10 @@ extern BEMenuItem
 #endif
 	DECLARE_PAD_BINDS_MENUITEM(BMenace, FuncKeys)
 	DECLARE_NONKEY_BINDS_MENUITEMS(BMenace, DebugKeys)
-	g_beBMenacePadBindsMenuItem_LeftStick,
-	g_beBMenacePadBindsMenuItem_RightStick,
+	g_beBMenacePadBindsMenuItem_LeftStickX,
+	g_beBMenacePadBindsMenuItem_LeftStickY,
+	g_beBMenacePadBindsMenuItem_RightStickX,
+	g_beBMenacePadBindsMenuItem_RightStickY,
 	g_beDeviceVolumesMenuItem_PCSpkVol,
 	g_beDeviceVolumesMenuItem_OPLVol,
 	g_beDeviceVolumesMenuItem_DigiVol;
@@ -403,8 +405,10 @@ static BESettingMenuItemPair g_be_setting_pairs[] = {
 #endif
 	DEFINE_BMENACE_PAD_BIND_PAIR(FuncKeys, FUNCKEYS)
 	DEFINE_BMENACE_NONKEY_BIND_PAIRS(DebugKeys, DEBUGKEYS)
-	{&g_refKeenCfg.bmenace.useLeftStick, &g_beBMenacePadBindsMenuItem_LeftStick},
-	{&g_refKeenCfg.bmenace.useRightStick, &g_beBMenacePadBindsMenuItem_RightStick},
+	{&g_refKeenCfg.bmenace.leftStickX, &g_beBMenacePadBindsMenuItem_LeftStickX},
+	{&g_refKeenCfg.bmenace.leftStickY, &g_beBMenacePadBindsMenuItem_LeftStickY},
+	{&g_refKeenCfg.bmenace.rightStickX, &g_beBMenacePadBindsMenuItem_RightStickX},
+	{&g_refKeenCfg.bmenace.rightStickY, &g_beBMenacePadBindsMenuItem_RightStickY},
 #endif
 
 	{&g_refKeenCfg.pcSpkVol, &g_beDeviceVolumesMenuItem_PCSpkVol,

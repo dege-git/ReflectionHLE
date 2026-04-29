@@ -253,6 +253,13 @@ void BE_ST_AltControlScheme_InitTouchControlsUI(BE_ST_OnscreenTouchControl *onSc
 extern BE_ST_ControllerMapping g_beStControllerMappingTextInput;
 extern BE_ST_ControllerMapping g_beStControllerMappingDebugKeys;
 
+// Originally added for BioMenace, but may potentially be useful elsewhere.
+enum {
+	BE_ST_CTRL_AXIS_BIND_OFF,
+	BE_ST_CTRL_AXIS_BIND_MOVE,
+	BE_ST_CTRL_AXIS_BIND_LOOK,
+};
+
 // Used when loading controller scheme stuff from cfg
 #ifdef REFKEEN_HAS_VER_KDREAMS
 enum {

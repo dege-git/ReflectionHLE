@@ -562,6 +562,8 @@ static const char *g_be_inputSettingsChoices_controllerScheme[] = {"Classic", "M
 static const char *g_be_inputSettingsChoices_touchControls[] = {"Auto", "Off", "Forced", NULL};
 #endif
 static const char *g_be_inputSettingsChoices_mouseGrab[] = {"Auto", "Off", "Commonly", NULL};
+// Actually for other input settings
+static const char *g_be_inputSettingsChoices_axisBind[] = {"Off", "Move", "Look", NULL};
 
 #ifdef REFKEEN_CONFIG_ENABLE_TOUCHINPUT
 static void BEL_ST_Launcher_Handler_TouchInputDebugging(BEMenuItem **menuItemP);
@@ -1205,8 +1207,10 @@ BEMenu g_beBMenaceMouseBindsMenu = {
 
 /*** BioMenace pad binds menu ***/
 
-BEMENUITEM_DEF_SELECTION(g_beBMenacePadBindsMenuItem_LeftStick, "Use left stick", g_be_settingsChoices_boolean)
-BEMENUITEM_DEF_SELECTION(g_beBMenacePadBindsMenuItem_RightStick, "Use right stick", g_be_settingsChoices_boolean)
+BEMENUITEM_DEF_SELECTION(g_beBMenacePadBindsMenuItem_LeftStickX, "Left stick X axis", g_be_settingsChoices_boolean)
+BEMENUITEM_DEF_SELECTION(g_beBMenacePadBindsMenuItem_LeftStickY, "Left stick Y axis", g_be_inputSettingsChoices_axisBind)
+BEMENUITEM_DEF_SELECTION(g_beBMenacePadBindsMenuItem_RightStickX, "Right stick X axis", g_be_settingsChoices_boolean)
+BEMENUITEM_DEF_SELECTION(g_beBMenacePadBindsMenuItem_RightStickY, "Right stick Y axis", g_be_inputSettingsChoices_axisBind)
 
 static BEMenuItem *g_beBMenacePadBindsMenuItems[] = {
 	&g_beBMenacePadBindsMenuItem_Action_Up,
@@ -1222,8 +1226,10 @@ static BEMenuItem *g_beBMenacePadBindsMenuItems[] = {
 	&g_beBMenacePadBindsMenuItem_Action_ScoreBox,
 	&g_beBMenacePadBindsMenuItem_Action_FuncKeys,
 	&g_beBMenacePadBindsMenuItem_Action_DebugKeys,
-	&g_beBMenacePadBindsMenuItem_LeftStick,
-	&g_beBMenacePadBindsMenuItem_RightStick,
+	&g_beBMenacePadBindsMenuItem_LeftStickX,
+	&g_beBMenacePadBindsMenuItem_LeftStickY,
+	&g_beBMenacePadBindsMenuItem_RightStickX,
+	&g_beBMenacePadBindsMenuItem_RightStickY,
 	NULL
 };
 

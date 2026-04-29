@@ -481,26 +481,50 @@ void RefKeen_PrepareAltControllerScheme(void)
 	g_ingame_altcontrol_mapping_gameplay_touchmappings[17].xpmImage = 0;
 #endif
 
-	if (g_refKeenCfg.bmenace.useLeftStick)
+	if (g_refKeenCfg.bmenace.leftStickX)
+	{
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LX][0] = g_ingame_but_left_map;
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LX][1] = g_ingame_but_right_map;
+	}
+
+	if (g_refKeenCfg.bmenace.leftStickY == BE_ST_CTRL_AXIS_BIND_MOVE)
 	{
 		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LY][0] = g_ingame_but_up_map;
 		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LY][1] = g_ingame_but_down_map;
-		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LX][0] = g_ingame_but_left_map;
-		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LX][1] = g_ingame_but_right_map;
+	}
+	else if (g_refKeenCfg.bmenace.leftStickY == BE_ST_CTRL_AXIS_BIND_LOOK)
+	{
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LY][0] = g_ingame_but_lookup_map;
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_LY][1] = g_ingame_but_lookdown_map;
+	}
 
+	if (g_refKeenCfg.bmenace.leftStickX || g_refKeenCfg.bmenace.leftStickY)
+	{
 		g_ingame_altcontrol_mapping_menu.paxes[BE_ST_CTRL_AXIS_LY][0] = g_ingame_mouse_up_map;
 		g_ingame_altcontrol_mapping_menu.paxes[BE_ST_CTRL_AXIS_LY][1] = g_ingame_mouse_down_map;
 		g_ingame_altcontrol_mapping_menu.paxes[BE_ST_CTRL_AXIS_LX][0] = g_ingame_mouse_left_map;
 		g_ingame_altcontrol_mapping_menu.paxes[BE_ST_CTRL_AXIS_LX][1] = g_ingame_mouse_right_map;
 	}
 
-	if (g_refKeenCfg.bmenace.useRightStick)
+	if (g_refKeenCfg.bmenace.rightStickX)
+	{
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RX][0] = g_ingame_but_left_map;
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RX][1] = g_ingame_but_right_map;
+	}
+
+	if (g_refKeenCfg.bmenace.rightStickY == BE_ST_CTRL_AXIS_BIND_MOVE)
 	{
 		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RY][0] = g_ingame_but_up_map;
 		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RY][1] = g_ingame_but_down_map;
-		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RX][0] = g_ingame_but_left_map;
-		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RX][1] = g_ingame_but_right_map;
+	}
+	else if (g_refKeenCfg.bmenace.rightStickY == BE_ST_CTRL_AXIS_BIND_LOOK)
+	{
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RY][0] = g_ingame_but_lookup_map;
+		g_ingame_altcontrol_mapping_gameplay.paxes[BE_ST_CTRL_AXIS_RY][1] = g_ingame_but_lookdown_map;
+	}
 
+	if (g_refKeenCfg.bmenace.rightStickX || g_refKeenCfg.bmenace.rightStickY)
+	{
 		g_ingame_altcontrol_mapping_menu.paxes[BE_ST_CTRL_AXIS_RY][0] = g_ingame_mouse_up_map;
 		g_ingame_altcontrol_mapping_menu.paxes[BE_ST_CTRL_AXIS_RY][1] = g_ingame_mouse_down_map;
 		g_ingame_altcontrol_mapping_menu.paxes[BE_ST_CTRL_AXIS_RX][0] = g_ingame_mouse_left_map;

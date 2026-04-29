@@ -156,8 +156,8 @@ typedef struct
 	struct
 	{
 		int/*bool*/ betaFixes;
-		int/*bool*/ useLeftStick;
-		int/*bool*/ useRightStick;
+		int leftStickX, leftStickY;
+		int rightStickX, rightStickY;
 		struct
 		{
 			int key;

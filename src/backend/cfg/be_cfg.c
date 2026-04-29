@@ -86,6 +86,7 @@ static const char *g_be_setting_sb_vals[] = {"off", "sb", "sbpro" ,"sb16"};
 #ifdef REFKEEN_CONFIG_ENABLE_TOUCHINPUT
 static const char *g_be_setting_touchinput_vals[] = {"auto", "off", "forced"};
 #endif
+static const char *g_be_setting_axisbind_vals[] = {"off", "move", "look"};
 
 #define DEF_ENUM(setting, key, strs, def) \
 	{&g_refKeenCfg.setting, 0, key, BE_ST_CFG_VAL_ENUM, def, (intptr_t)strs, BE_Cross_ArrayLen(strs)},
@@ -396,8 +397,10 @@ static BE_ST_CFG_Setting_T g_be_st_bmenace_settings[] = {
 	DEF_STR(bmenace.launcherModPath, "launchermod")
 #endif
 	DEF_BOOL(bmenace.betaFixes, "betafixes", true)
-	DEF_BOOL(bmenace.useLeftStick, "lstick", true)
-	DEF_BOOL(bmenace.useRightStick, "rstick", false)
+	DEF_BOOL(bmenace.leftStickX, "lstickx", true)
+	DEF_ENUM(bmenace.leftStickY, "lsticky", g_be_setting_axisbind_vals, BE_ST_CTRL_AXIS_BIND_MOVE)
+	DEF_BOOL(bmenace.rightStickX, "rstickx", false)
+	DEF_ENUM(bmenace.rightStickY, "rsticky", g_be_setting_axisbind_vals, BE_ST_CTRL_AXIS_BIND_OFF)
 	DEF_CTRL_BINDS_BMENACE_ENUMS(UP, "up", BE_ST_CTRL_BUT_DPAD_UP)
 	DEF_CTRL_BINDS_BMENACE_ENUMS(DOWN, "down", BE_ST_CTRL_BUT_DPAD_DOWN)
 	DEF_CTRL_BINDS_BMENACE_ENUMS(LEFT, "left", BE_ST_CTRL_BUT_DPAD_LEFT)
