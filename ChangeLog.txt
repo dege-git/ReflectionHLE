@@ -94,6 +94,7 @@ More launcher-related changes:
 * Upon selecting a directory with more than one compatible game
 or game version, all of them may be added at once, instead of
 having to reselect the directory over and over again.
+* A few misc. visual changes.
 * Fixed: If supported, software rendering
 should be used for the launcher when requested.
 * Fixed: Command-line arguments won't lead to a skip of the
