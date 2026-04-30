@@ -185,7 +185,9 @@ static const char *g_sdlPadLauncherButtonNames[BE_Cross_ArrayLen(g_be_st_padFeat
 	static char menuItemName ## _label[labelSize] = {0}; \
 	BEMenuItem menuItemName = {handlerPtr, choices, menuPtr, menuItemName ## _label, 0, 0, 0, 0, 0, 0, type};
 
-static const char *g_be_settingsChoices_boolean[] = {"No","Yes",NULL};
+static const char *g_be_settingsChoices_boolean[] = {"\x07\xB0\xB0","\xB1\xB1\x08",NULL};
+//static const char *g_be_settingsChoices_boolean[] = {"Off","On",NULL};
+//static const char *g_be_settingsChoices_boolean[] = {"No","Yes",NULL};
 
 /*** Main menu ***/
 
